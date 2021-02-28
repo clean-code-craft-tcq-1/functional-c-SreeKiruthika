@@ -41,6 +41,7 @@ int checkSoC(float soc)
 	}
 	return retval;
 }
+
 int checkChargeRate(float chargeRate)
 {
 	int retval = 0;
@@ -73,26 +74,6 @@ int checkChargeRate(float chargeRate)
 			 All bit set indicates invalid parameter passed
 *****************************************************************************************/
 
-int CheckBatteryParam(float value, enum BatteryParam param)
-{
-	int retval = 0;
-	switch (param)
-	{
-	  case TEMP:
-        retval = checkTemp(value);
-		break;
-	  case SOC:
-	    retval = checkSoC(value) << 2 ;
-		break;
-	  case CHARGERATE:
-	    retval = checkChargeRate (value) << 4;
-	    break;
-	  default:
-	   retval = 255; /*To indicate invalid paramater passed*/
-	} 
-	
-	return retval;
-}
 
 /****************************************************************************************
 *Func desc : This function check if the battery state is ok 
@@ -105,12 +86,12 @@ int batteryIsOk(float temperature, float soc, float chargeRate)
 {
   float batteryParamValue[NUMPARAM] = {temperature, soc, chargeRate};
   int BatteryStatus = 0;
-  for (int param =0; param < NUMPARAM; param++)
-  {
-	  int index = param ;
-	  int temp_BatteryStatus =  CheckBatteryParam (batteryParamValue[index] , param) ;
-	  BatteryStatus = BatteryStatus | (temp_BatteryStatus << (2*param)) ;
-  }
+  BatteryStatus = checkTemp(temperature)&& 0x03;
+  temp_BatteryStatus = checkSoC(soc) << 2;
+  BatteryStatus =  BatteryStatus | (temp_BatteryStatus && 0xC0);
+  temp_BatteryStatus = checkChargeRate (value) << 4;
+  BatteryStatus = BatteryStatus | (temp_BatteryStatus && 0x30);
+  
   if (BatteryStatus > 0)  
 	 return 0;
   else
