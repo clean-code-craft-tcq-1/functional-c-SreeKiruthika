@@ -2,18 +2,10 @@
 
 int checkTemp(float temperature)
 {
-
-    int retval = 0;
-    if ((temperature >= MINTEMP) && (temperature <= MAXTEMP))
-    {
-       printf("Temperature within range!\n");
-       retval = 0 ;
-    }
-    else
-    {
-       printf("Temperature is out of range!\n");
-       retval =(temperature < MINTEMP) ? 1 : 2;
-    }
+    int retval;
+   
+	retval = (temperature < MINTEMP)? 1: ((temperature > MAXTEMP)? 2 : 0);
+	
     return retval;
 }	
 		
