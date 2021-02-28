@@ -31,14 +31,14 @@ int CheckBatteryParam(float value, enum BatteryParam param)
 	    }
 		break;
 	  case CHARGERATE:
-	    if (value < MAXCHGRATE)
+	    if (value > MAXCHGRATE)
 	    {
 		  printf("Charge Rate out of range!\n");
 		  retval = 4 ;
 	    }
 	  break;
 	  default:
-	   retval=0; /*To indicate invalid paramater passed*/
+	   retval=255; /*To indicate invalid paramater passed*/
 	} 
 	
 	return retval;
