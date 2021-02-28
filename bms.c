@@ -84,16 +84,14 @@ int checkChargeRate(float chargeRate)
 *****************************************************************************************/	  
 int batteryIsOk(float temperature, float soc, float chargeRate) 
 {
-  float batteryParamValue[NUMPARAM] = {temperature, soc, chargeRate};
   int BatteryStatus = 0;
-  BatteryStatus = checkTemp(temperature)&& 0x03;
+  int temp_BatteryStatus = 0;
+  temp_BatteryStatus = checkTemp(temperature);
+  BatteryStatus = temp_BatteryStatus && 0x03;
   temp_BatteryStatus = checkSoC(soc) << 2;
   BatteryStatus =  BatteryStatus | (temp_BatteryStatus && 0xC0);
-  temp_BatteryStatus = checkChargeRate (value) << 4;
+  temp_BatteryStatus = checkChargeRate (chargeRate) << 4;
   BatteryStatus = BatteryStatus | (temp_BatteryStatus && 0x30);
   
-  if (BatteryStatus > 0)  
-	 return 0;
-  else
-	 return 1;
+  return (BatteryStatus == 0);
 }
