@@ -11,7 +11,7 @@
 			 All bit set indicates invalid parameter passed
 *****************************************************************************************/
 
-int CheckBatteryParam(float value, BatteryParam param)
+int CheckBatteryParam(float value, enum BatteryParam param)
 {
 	int retval = 0;
 	switch param
@@ -52,12 +52,13 @@ int CheckBatteryParam(float value, BatteryParam param)
 *****************************************************************************************/	  
 int batteryIsOk(float temperature, float soc, float chargeRate) 
 {
-  float batteryParamValue[NUMPARAM] = {temperature, soc, chargerate};
+  float batteryParamValue[NUMPARAM] = {temperature, soc, chargeRate};
   int BatteryStatus = 0;
-  for (int param =0; param < NUMPARAM; i++)
+  for (int param =0; param < NUMPARAM; param++)
   {
 	  int index = param ;
-	  BatteryStatus = BatteryStatus | CheckBatteryParam (batteryParamValue[index] , param);
+	  int temp_BatteryStatus =  CheckBatteryParam (batteryParamValue[index] , param)
+	  BatteryStatus = BatteryStatus | temp_BatteryStatus ;
   }
   if (BatteryStatus > 0)  
 	 return 0;

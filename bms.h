@@ -16,7 +16,7 @@ enum BatteryParam {TEMP, SOC, CHARGERATE, NUMPARAM};
 /************************************************************/
 
 /**************Function prototype section**********************/
-int CheckBatteryParam(float value, BatteryParam param);
+int CheckBatteryParam(float value, enum BatteryParam param);
 	  
 int batteryIsOk(float temperature, float soc, float chargeRate);
 /************************************************************/
