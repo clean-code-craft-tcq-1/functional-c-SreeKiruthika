@@ -14,7 +14,7 @@
 int CheckBatteryParam(float value, enum BatteryParam param)
 {
 	int retval = 0;
-	switch param
+	switch (param)
 	{
 	  case TEMP:
         if ((value < MINTEMP)|| (value > MAXTEMP))
@@ -40,7 +40,8 @@ int CheckBatteryParam(float value, enum BatteryParam param)
 	  default:
 	   retval=255; /*To indicate invalid paramater passed*/
 	} 
-	  
+	
+	return retval;
 }
 
 /****************************************************************************************
@@ -57,7 +58,7 @@ int batteryIsOk(float temperature, float soc, float chargeRate)
   for (int param =0; param < NUMPARAM; param++)
   {
 	  int index = param ;
-	  int temp_BatteryStatus =  CheckBatteryParam (batteryParamValue[index] , param)
+	  int temp_BatteryStatus =  CheckBatteryParam (batteryParamValue[index] , param) ;
 	  BatteryStatus = BatteryStatus | temp_BatteryStatus ;
   }
   if (BatteryStatus > 0)  
