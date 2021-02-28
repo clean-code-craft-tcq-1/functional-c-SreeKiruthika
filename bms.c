@@ -2,23 +2,19 @@
 
 int checkTemp(float temperature)
 {
-	int retval = 0;
+
+    int retval = 0;
     if ((temperature >= MINTEMP) && (temperature <= MAXTEMP))
     {
        printf("Temperature within range!\n");
        retval = 0 ;
     }
-    else if (temperature == 255)
-	{
-		printf("Temperature Sensor is defective!\n");
-       retval = 3 ;
-	}
-	else
-	{
-	   printf("Temperature is out of range!\n");
+    else
+    {
+       printf("Temperature is out of range!\n");
        retval =(temperature < MINTEMP) ? 1 : 2;
-	}
-	return retval;
+    }
+    return retval;
 }	
 		
 int checkSoC(float soc)
