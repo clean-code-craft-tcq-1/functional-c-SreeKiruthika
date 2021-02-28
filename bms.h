@@ -19,4 +19,10 @@ enum BatteryParam {TEMP, SOC, CHARGERATE, NUMPARAM};
 int CheckBatteryParam(float value, enum BatteryParam param);
 	  
 int batteryIsOk(float temperature, float soc, float chargeRate);
+
+int checkSoC(float soc);
+
+int checkTemp(float temperature);
+
+int checkChargeRate(float chargeRate)
 /************************************************************/

@@ -2,12 +2,13 @@
 
 int checkTemp(float temperature)
 {
-    if ((value >= MINTEMP) && (value <= MAXTEMP))
+	int retval = 0;
+    if ((temperature >= MINTEMP) && (temperature <= MAXTEMP))
     {
        printf("Temperature within range!\n");
        retval = 0 ;
     }
-	else if (value == 255)
+    else if (temperature == 255)
 	{
 		printf("Temperature Sensor is defective!\n");
        retval = 3 ;
@@ -15,18 +16,20 @@ int checkTemp(float temperature)
 	else
 	{
 	   printf("Temperature is out of range!\n");
-       retval =(value < MINTEMP) ? 1 : 2;
+       retval =(temperature < MINTEMP) ? 1 : 2;
 	}
+	return retval;
 }	
 		
-int checkSoC(float value)
+int checkSoC(float soc)
 {
-	if ((value >= MINSOC) && (value <= MAXSOC))
+	int retval = 0;
+	if ((soc >= MINSOC) && (soc <= MAXSOC))
 	{
 	  printf("State of Charge in range!\n");
 	  retval = 0 ;
 	}
-	else if (value == 255)
+	else if (soc == 255)
 	{
 	  printf("State of Charge sensor defective\n");
 	  retval = 0 ;
@@ -34,17 +37,19 @@ int checkSoC(float value)
 	else
 	{
 	   printf("SoC is out of range!\n");
-       retval = (value < MINSOC) 1 : 2;
+       retval = (soc < MINSOC)? 1 : 2;
 	}
+	return retval;
 }
-int checkChargeRate(float value)
+int checkChargeRate(float chargeRate)
 {
-	if ((value <= MAXCHGRATE))
+	int retval = 0;
+	if ((chargeRate <= MAXCHGRATE))
 	{
 	  printf("charge rate in range!\n");
-	  retval = (value == 0)? 2 : 0 ; /*2 indicates it is not charging */
+	  retval =  0 ; /*2 indicates it is not charging */
 	}
-	else if ((value < 0) || (value > 1))
+	else if ((chargeRate < 0) || (chargeRate > 1))
 	{
 	  printf("Charge rate measured is defective\n");
 	  retval = 3 ;
@@ -54,6 +59,7 @@ int checkChargeRate(float value)
 	   printf("SoC is out of range!\n");
        retval = 1 ;
 	}
+	return retval;
 }
 
 /****************************************************************************************
