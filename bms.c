@@ -38,7 +38,7 @@ int CheckBatteryParam(float value, enum BatteryParam param)
 	    }
 	  break;
 	  default:
-	   retval=255; /*To indicate invalid paramater passed*/
+	   retval=0; /*To indicate invalid paramater passed*/
 	} 
 	
 	return retval;

@@ -1,7 +1,7 @@
 /************************************************************************************************************************/
 /* This file contains the inclusions and definitions needed for BMS*/
 /************************************************************************************************************************/
-
+#include <stdio.h>
 
 /***************DEFINES section *****************************/
 /* Parameters related to battery maintainence check is defined here*/
