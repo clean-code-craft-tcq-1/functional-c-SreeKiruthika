@@ -11,43 +11,17 @@ int checkTemp(float temperature)
 		
 int checkSoC(float soc)
 {
-	int retval = 0;
-	if ((soc >= MINSOC) && (soc <= MAXSOC))
-	{
-	  printf("State of Charge in range!\n");
-	  retval = 0 ;
-	}
-	else if (soc == 255)
-	{
-	  printf("State of Charge sensor defective\n");
-	  retval = 0 ;
-	}
-	else
-	{
-	   printf("SoC is out of range!\n");
-       retval = (soc < MINSOC)? 1 : 2;
-	}
+	int retval ;
+
+	retval = (soc < MINSOC)? 1 :((soc > MAXSOC)? 2 : 0);
+
 	return retval;
 }
 
 int checkChargeRate(float chargeRate)
 {
-	int retval = 0;
-	if ((chargeRate <= MAXCHGRATE))
-	{
-	  printf("charge rate in range!\n");
-	  retval =  0 ; /*2 indicates it is not charging */
-	}
-	else if ((chargeRate < 0) || (chargeRate > 1))
-	{
-	  printf("Charge rate measured is defective\n");
-	  retval = 3 ;
-	}
-	else
-	{
-	   printf("SoC is out of range!\n");
-       retval = 1 ;
-	}
+	int retval;
+	retval = (chargeRate <= MAXCHGRATE)? ((chargeRate == 0) ? 2 : 0 ): 1;
 	return retval;
 }
 
@@ -79,7 +53,7 @@ int batteryIsOk(float temperature, float soc, float chargeRate)
   temp_BatteryStatus = checkSoC(soc) << 2;
   BatteryStatus =  BatteryStatus | (temp_BatteryStatus && 0xC0);
   temp_BatteryStatus = checkChargeRate (chargeRate) << 4;
-  BatteryStatus = BatteryStatus | (temp_BatteryStatus && 0x30);
+  BatteryStatus = BatteryStatus | (temp_BatteryStatus && 0x10); /*Only 1 bit considered as 2 indicates not charging
   
   return (BatteryStatus == 0);
 }
