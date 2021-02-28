@@ -1,5 +1,61 @@
 #include "bms.h"
 
+int checkTemp(float temperature)
+{
+    if ((value >= MINTEMP) && (value <= MAXTEMP))
+    {
+       printf("Temperature within range!\n");
+       retval = 0 ;
+    }
+	else if (value == 255)
+	{
+		printf("Temperature Sensor is defective!\n");
+       retval = 3 ;
+	}
+	else
+	{
+	   printf("Temperature is out of range!\n");
+       retval =(value < MINTEMP) ? 1 : 2;
+	}
+}	
+		
+int checkSoC(float value)
+{
+	if ((value >= MINSOC) && (value <= MAXSOC))
+	{
+	  printf("State of Charge in range!\n");
+	  retval = 0 ;
+	}
+	else if (value == 255)
+	{
+	  printf("State of Charge sensor defective\n");
+	  retval = 0 ;
+	}
+	else
+	{
+	   printf("SoC is out of range!\n");
+       retval = (value < MINSOC) 1 : 2;
+	}
+}
+int checkChargeRate(float value)
+{
+	if ((value <= MAXCHGRATE))
+	{
+	  printf("charge rate in range!\n");
+	  retval = (value == 0)? 2 : 0 ; /*2 indicates it is not charging */
+	}
+	else if ((value < 0) || (value > 1))
+	{
+	  printf("Charge rate measured is defective\n");
+	  retval = 3 ;
+	}
+	else
+	{
+	   printf("SoC is out of range!\n");
+       retval = 1 ;
+	}
+}
+
 /****************************************************************************************
 *Func desc : This function check if the battery parameters are within the specified range 
 *Param     : value - The battery parameter value that was measured -float type
@@ -17,28 +73,16 @@ int CheckBatteryParam(float value, enum BatteryParam param)
 	switch (param)
 	{
 	  case TEMP:
-        if ((value < MINTEMP)|| (value > MAXTEMP))
-	    {
-		  printf("Temperature out of range!\n");
-		  retval = 1 ;
-	    }
+        retval = checkTemp(value);
 		break;
 	  case SOC:
-	    if ((value < MINSOC)|| (value > MAXSOC))
-	    {
-		  printf("State of Charge out of range!\n");
-		  retval = 2 ;
-	    }
+	    retval = checkSoC(value) << 2 ;
 		break;
 	  case CHARGERATE:
-	    if (value > MAXCHGRATE)
-	    {
-		  printf("Charge Rate out of range!\n");
-		  retval = 4 ;
-	    }
-	  break;
+	    retval = checkChargeRate (value) << 4;
+	    break;
 	  default:
-	   retval=255; /*To indicate invalid paramater passed*/
+	   retval = 255; /*To indicate invalid paramater passed*/
 	} 
 	
 	return retval;
@@ -59,7 +103,7 @@ int batteryIsOk(float temperature, float soc, float chargeRate)
   {
 	  int index = param ;
 	  int temp_BatteryStatus =  CheckBatteryParam (batteryParamValue[index] , param) ;
-	  BatteryStatus = BatteryStatus | temp_BatteryStatus ;
+	  BatteryStatus = BatteryStatus | (temp_BatteryStatus << (2*param)) ;
   }
   if (BatteryStatus > 0)  
 	 return 0;
