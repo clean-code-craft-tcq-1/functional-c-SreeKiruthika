@@ -97,6 +97,10 @@ int checkChargeRate(float chargeRate)
 int BatteryStateCheck(float temperature, float soc, float chargeRate) 
 {
 	/*All check param functions must return 0 if the param check is OK*/
-    return !(checkTemp(temperature)||checkSoC(soc)||checkChargeRate(chargeRate));
+    printf"/n/n/nBattery status is as follows:");
+    temp_status = checkTemp(temperature);
+    soc_status = checkSoC(soc);
+    chargerate_status = checkChargeRate(chargeRate);
+    return !(temp_status||soc_status||chargerate_status);
 }
 

@@ -29,11 +29,12 @@ int checkIfCharging(float chargeRate)
 *Param     : temperature - The current battery temperature value that was measured -float type
 *			 soc         - The current battery state of charge that was measured   -float type	
 *            chargerate  - The charging rate that is measured - float type
-*Return    : No return values, just infers the battry charge / charging status
+*Return    : No return values, just infers the battery charge / charging status
 *****************************************************************************************/	  
 void BatteryChargeMonitoring(float temperature, float soc, float chargeRate) 
 {
 	int tempstatus, retval;
+	printf("\nCharging status info:");
 	if (checkIfCharging(chargeRate) == 1)
 	{ 
 		tempstatus = checkTemp(temperature);
@@ -45,7 +46,7 @@ void BatteryChargeMonitoring(float temperature, float soc, float chargeRate)
 	{
 		if (checkSoC(soc)== 1)
 		{
-			printf("Battery charging is needed");
+			printf("\nBattery charging is needed");
 			tempstatus = checkTemp(temperature);
 			retval = (tempstatus==1)? printf("\nTemperature not sufficient"): ((tempstatus == 2) ? printf("\nTemperature is too high for charging"): printf("\nTemperature is ok"));
 		}
