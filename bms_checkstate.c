@@ -26,12 +26,6 @@ int checkTemp(float temperature)
 		printf("\nTempertaure is in expected range");
 		return 0;
 	}
-	/*
-	retval = (temperature < MINTEMP)? 1: ((temperature > MAXTEMP)? 2 : 0);
-        
-	(retval==0)?printf("\nTempertaure not in range") : printf("\nTempertaure is within range");
-	
-    return retval; */
 }	
 
 /****************************************************************************************
@@ -60,13 +54,7 @@ int checkSoC(float soc)
 		printf("\nSoC is in range");
 		return 0;
 	}
-	
-	/*
-	retval = (soc < MINSOC)? 1 :((soc > MAXSOC)? 2 : 0);
-       
-       (retval==0)?printf("\nSoC not in range") : printf("\nSoC is within range");
 
-	return retval; */
 }
 
 /****************************************************************************************
@@ -80,7 +68,7 @@ int checkChargeRate(float chargeRate)
 {
 	int retval;
 	retval = (chargeRate < MAXCHGRATE)? 0 : 1;
-	(retval==0)?printf("\nCharge rate not in range") : printf("\nCharge Rate is within range");
+	(retval==0)?printf("\nCharge rate is within range") : printf("\nCharge Rate is not in range");
 	return retval;
 }
 
@@ -97,7 +85,7 @@ int checkChargeRate(float chargeRate)
 int BatteryStateCheck(float temperature, float soc, float chargeRate) 
 {
 	/*All check param functions must return 0 if the param check is OK*/
-    printf("/n/n/nBattery status is as follows:");
+    printf("\n\n\nBattery status is as follows:");
     int temp_status = checkTemp(temperature);
     int soc_status = checkSoC(soc);
     int chargerate_status = checkChargeRate(chargeRate);
