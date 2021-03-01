@@ -11,12 +11,27 @@
 int checkTemp(float temperature)
 {
     int retval;
-   
+    if(temperature < MINTEMP)
+	{
+		printf("\nTempertaure is less than expected range");
+		return 1;
+	}
+	else if (temperature > MAXTEMP)
+	{
+		printf("\nTempertaure is more than expected range");
+		return 2;
+	}
+	else
+	{
+		printf("\nTempertaure is in expected range");
+		return 0;
+	}
+	/*
 	retval = (temperature < MINTEMP)? 1: ((temperature > MAXTEMP)? 2 : 0);
         
-	(retval==0)?printf("/nTempertaure not in range") : printf("/nTempertaure is within range");
+	(retval==0)?printf("\nTempertaure not in range") : printf("\nTempertaure is within range");
 	
-    return retval;
+    return retval; */
 }	
 
 /****************************************************************************************
@@ -30,12 +45,28 @@ int checkTemp(float temperature)
 int checkSoC(float soc)
 {
 	int retval ;
-
+    if(soc < MINSOC)
+	{
+		printf("\nSoC is less than expected range");
+		return 1;
+	}
+	if(soc > MAXSOC)
+	{
+		printf("\nSoC is more than expected range");
+		return 2;
+	}
+	else
+	{
+		printf("\nSoC is in range");
+		return 0;
+	}
+	
+	/*
 	retval = (soc < MINSOC)? 1 :((soc > MAXSOC)? 2 : 0);
        
-       (retval==0)?printf("/nSoC not in range") : printf("/nSoC is within range");
+       (retval==0)?printf("\nSoC not in range") : printf("\nSoC is within range");
 
-	return retval;
+	return retval; */
 }
 
 /****************************************************************************************
@@ -49,7 +80,7 @@ int checkChargeRate(float chargeRate)
 {
 	int retval;
 	retval = (chargeRate < MAXCHGRATE)? 0 : 1;
-	(retval==0)?printf("/nCharge rate not in range") : printf("/nCharge Rate is within range");
+	(retval==0)?printf("\nCharge rate not in range") : printf("\nCharge Rate is within range");
 	return retval;
 }
 
