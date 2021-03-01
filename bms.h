@@ -17,11 +17,15 @@ enum BatteryParam {TEMP, SOC, CHARGERATE, NUMPARAM};
 
 /**************Function prototype section**********************/
   
-int batteryIsOk(float temperature, float soc, float chargeRate);
+int BatteryStateCheck(float temperature, float soc, float chargeRate);
 
 int checkSoC(float soc);
 
 int checkTemp(float temperature);
 
 int checkChargeRate(float chargeRate);
+
+void BatteryChargeMonitoring(float temperature, float soc, float chargeRate) ;
+
+int checkIfCharging(float chargeRate);
 /************************************************************/
