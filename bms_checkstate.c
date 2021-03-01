@@ -61,6 +61,6 @@ int checkChargeRate(float chargeRate)
 int BatteryStateCheck(float temperature, float soc, float chargeRate) 
 {
 	/*All check param functions must return 0 if the param check is OK*/
-    return !(checkTemp(temperature)||checkSoC(soc)||checkChargeRate(float chargeRate));
+    return !(checkTemp(temperature)||checkSoC(soc)||checkChargeRate(chargeRate));
 }
 
