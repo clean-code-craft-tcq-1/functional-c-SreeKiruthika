@@ -12,12 +12,12 @@ int checkIfCharging(float chargeRate)
 {
 	if (chargeRate != 0)
 	{
-		printf("Battery is charging");
+		printf("\nBattery is charging");
 		return 1;
 	}
 	else
 	{
-		printf("Battery is not charging");
+		printf("\nBattery is not charging");
 		return 0;
 	}
 
@@ -37,8 +37,8 @@ void BatteryChargeMonitoring(float temperature, float soc, float chargeRate)
 	if (checkIfCharging(chargeRate) == 1)
 	{ 
 		tempstatus = checkTemp(temperature);
-		retval = (tempstatus==1)? printf("Temperature not sufficient"): ((tempstatus == 2) ? printf("Temperature is too high for charging"): printf("Temperature is ok"));
-		retval = (checkSoC(soc)) ? printf("Charging is sufficient, UNPLUG CHARGER!") : printf("Battery is Charging");
+		retval = (tempstatus==1)? printf("\nTemperature not sufficient"): ((tempstatus == 2) ? printf("\nTemperature is too high for charging"): printf("\nTemperature is ok"));
+		retval = (checkSoC(soc)) ? printf("\nCharging is sufficient, UNPLUG CHARGER!") : printf("\nBattery is Charging");
 		
 	}
 	else
@@ -47,7 +47,7 @@ void BatteryChargeMonitoring(float temperature, float soc, float chargeRate)
 		{
 			printf("Battery charging is needed");
 			tempstatus = checkTemp(temperature);
-			retval = (tempstatus==1)? printf("Temperature not sufficient"): ((tempstatus == 2) ? printf("Temperature is too high for charging"): printf("Temperature is ok"));
+			retval = (tempstatus==1)? printf("\nTemperature not sufficient"): ((tempstatus == 2) ? printf("\nTemperature is too high for charging"): printf("\nTemperature is ok"));
 		}
 	}
 		

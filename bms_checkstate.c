@@ -13,6 +13,8 @@ int checkTemp(float temperature)
     int retval;
    
 	retval = (temperature < MINTEMP)? 1: ((temperature > MAXTEMP)? 2 : 0);
+        
+	(retval==0)?printf("/nTempertaure not in range") : printf("/nTempertaure is within range");
 	
     return retval;
 }	
@@ -30,6 +32,8 @@ int checkSoC(float soc)
 	int retval ;
 
 	retval = (soc < MINSOC)? 1 :((soc > MAXSOC)? 2 : 0);
+       
+       (retval==0)?printf("/nSoC not in range") : printf("/nSoC is within range");
 
 	return retval;
 }
@@ -45,6 +49,7 @@ int checkChargeRate(float chargeRate)
 {
 	int retval;
 	retval = (chargeRate < MAXCHGRATE)? 0 : 1;
+	(retval==0)?printf("/nCharge rate not in range") : printf("/nCharge Rate is within range");
 	return retval;
 }
 
