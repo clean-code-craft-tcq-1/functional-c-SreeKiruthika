@@ -28,4 +28,8 @@ int checkChargeRate(float chargeRate);
 void BatteryChargeMonitoring(float temperature, float soc, float chargeRate) ;
 
 int checkIfCharging(float chargeRate);
+
+void checkIfChargingNeeded(float soc);
+
+void checkIfCharged(float soc);
 /************************************************************/
