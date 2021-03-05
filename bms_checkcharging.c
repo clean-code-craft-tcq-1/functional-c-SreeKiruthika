@@ -23,6 +23,7 @@ int checkIfCharging(float chargeRate)
 
 }
 
+void charginginfo(float SoC)
 
 /****************************************************************************************
 *Func desc : This function is used to check for the battery charge monitoring 
@@ -37,11 +38,6 @@ void BatteryChargeMonitoring(float temperature, float soc, float chargeRate)
 	printf("\nCharging status info:");
 	checkTemp(temperature);
 	int chargestatus = (checkSoC(soc));
-	if ((checkIfCharging(chargeRate) == 0)&& (chargestatus==1))
-	{ 
-		printf("\nCharging is needed, CONNECT CHARGER!");
-	   
-	}
 	if((checkIfCharging(chargeRate) == 1) && (chargestatus==2))
 	{
 		printf("\nCharging is sufficient, UNPLUG CHARGER!");		
