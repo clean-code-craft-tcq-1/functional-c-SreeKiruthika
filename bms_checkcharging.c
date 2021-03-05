@@ -44,7 +44,10 @@ void BatteryChargeMonitoring(float temperature, float soc, float chargeRate)
 	}
 	else
 	{
-		retval = (chargestatus==2) ? printf("\nCharging is sufficient, UNPLUG CHARGER!") : printf("\n Continue charging till 80%");	
+		if(chargestatus==2)
+		{
+			printf("\nCharging is sufficient, UNPLUG CHARGER!");
+		}			
 	}
 		
 }
