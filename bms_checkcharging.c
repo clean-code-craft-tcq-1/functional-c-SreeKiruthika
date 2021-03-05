@@ -62,11 +62,11 @@ void checkIfCharged(float soc)
 {
 	if (soc > MAXSOC)
 	{
-	   printf("Charging is sufficient, UNPLUG CHARGER!");
+	   printf("\nCharging is sufficient, UNPLUG CHARGER!");
 	}
 	else
 	{
-	  printf("Batery charge value is %d , continue charging till 80%!", soc);
+	  printf("\nBatery charge value is %f , continue charging till 80%!", soc);
     }
 }
 /****************************************************************************************
@@ -78,11 +78,11 @@ void checkIfChargingNeeded(float soc)
 {
 	if (soc < MINSOC)
 	{
-	   printf("Battery charge is low, CONNECT CHARGER!");
+	   printf("\nBattery charge is low, CONNECT CHARGER!");
 	}
 	else
 	{
-	  printf("Batery charge value is %d, connect if it goes less than 20% ", soc);
+	  printf("\nBatery charge value is %f, connect if it goes less than 20% ", soc);
     }
 
 }
