@@ -23,7 +23,7 @@ int checkTemp(float temperature)
 	}
 	else
 	{
-		printf("\nTempertaure is in expected range");
+		printf("\nTempertaure is OK");
 		return 0;
 	}
 }	

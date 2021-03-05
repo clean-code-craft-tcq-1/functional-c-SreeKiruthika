@@ -35,21 +35,18 @@ void BatteryChargeMonitoring(float temperature, float soc, float chargeRate)
 {
 	int tempstatus, retval;
 	printf("\nCharging status info:");
+	int tempstatus = checkTemp(temperature);
+	int chargestatus = (checkSoC(soc));
 	if (checkIfCharging(chargeRate) == 1)
 	{ 
-		tempstatus = checkTemp(temperature);
-		retval = (tempstatus==1)? printf("\nTemperature not sufficient"): ((tempstatus == 2) ? printf("\nTemperature is too high for charging"): printf("\nTemperature is ok"));
-		retval = (checkSoC(soc)) ? printf("\nCharging is sufficient, UNPLUG CHARGER!") : printf("\n Continue charging till 80%");
-		
+	     retval = (chargestatus==2) ? printf("\nCharging is sufficient, UNPLUG CHARGER!") : printf("\n Continue charging till 80%");
 	}
 	else
 	{
-		if (checkSoC(soc)== 1)
+		if(chargestatus==2)
 		{
-			printf("\nBattery charging is needed");
-			tempstatus = checkTemp(temperature);
-			retval = (tempstatus==1)? printf("\nTemperature not sufficient"): ((tempstatus == 2) ? printf("\nTemperature is too high for charging"): printf("\nTemperature is ok"));
-		}
-	}
+			printf("\nCharging is needed, CONNECT CHARGER!");
+		}	
+	 }
 		
 }
