@@ -33,9 +33,9 @@ int checkIfCharging(float chargeRate)
 *****************************************************************************************/	  
 void BatteryChargeMonitoring(float temperature, float soc, float chargeRate) 
 {
-	int tempstatus, retval;
+	int  retval;
 	printf("\nCharging status info:");
-	int tempstatus = checkTemp(temperature);
+	checkTemp(temperature);
 	int chargestatus = (checkSoC(soc));
 	if (checkIfCharging(chargeRate) == 1)
 	{ 
@@ -43,7 +43,7 @@ void BatteryChargeMonitoring(float temperature, float soc, float chargeRate)
 	}
 	else
 	{
-		if(chargestatus==2)
+		if(chargestatus==1)
 		{
 			printf("\nCharging is needed, CONNECT CHARGER!");
 		}	
