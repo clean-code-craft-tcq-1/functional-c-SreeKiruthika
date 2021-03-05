@@ -42,12 +42,9 @@ void BatteryChargeMonitoring(float temperature, float soc, float chargeRate)
 		printf("\nCharging is needed, CONNECT CHARGER!");
 	   
 	}
-	else
+	if((checkIfCharging(chargeRate) == 1) && (chargestatus==2))
 	{
-		if(chargestatus==2)
-		{
-			printf("\nCharging is sufficient, UNPLUG CHARGER!");
-		}			
+		printf("\nCharging is sufficient, UNPLUG CHARGER!");		
 	}
 		
 }
