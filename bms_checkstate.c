@@ -37,9 +37,11 @@ int BatteryParamCheck (float param_value, struct ParamLimits param_limit)
 int BatteryStateCheck(float temperature, float soc, float chargeRate) 
 {
 	/*All check param functions must return 0 if the param check is OK*/
-    int batteryStatus = !((BatteryParamCheck(temperature, tempLimits)) || (BatteryParamCheck(soc, SoCLimits)) || (BatteryParamCheck(chargeRate, ChargeRateLimits));
+    int batteryStatus;
 	
-	printBatteryStatus (batteryStatus);
+	batteryStatus = !((BatteryParamCheck(temperature, tempLimits)) || (BatteryParamCheck(soc, SoCLimits)) || (BatteryParamCheck(chargeRate, ChargeRateLimits));
+	
+	printBatteryStatus(batteryStatus);
 	
     return batteryStatus;
 }
@@ -54,7 +56,7 @@ int BatteryStateCheck(float temperature, float soc, float chargeRate)
 			 1 - battery is ok
 			 0 - battery is not ok
 *****************************************************************************************/	
-void printBatteryStatus(batteryStatus)
+void printBatteryStatus(int batteryStatus)
 {
 	if(batteryStatus)
 	{

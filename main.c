@@ -18,20 +18,20 @@ int main()
   
   /*This function to be called every frequently based on the monitoring frequency needed*/
   /*Not charging and battery is normal */
-  printf("\n\nTC1\nThe passed values for battery charging status check are as follows \nTemperature : 30 \nSoC : 80 \nCharge rate:0");
-  BatteryChargeMonitoring (30,80,0);
+  printf("\n\nTC1\nThe passed values for battery charging status check are as follows \nSoC : 80 \nCharge rate:0");
+  BatteryChargeMonitoring (80,0);
 
-  /*Not charging and charge is low with optimum temperature */
-  printf("\n\nTC2\nThe passed values for battery charging status check are as follows \nTemperature : 30 \nSoC : 19 \nCharge rate:0");
-  BatteryChargeMonitoring (30,19,0);
+  /*Not charging and charge is low  */
+  printf("\n\nTC2\nThe passed values for battery charging status check are as follows \nSoC : 19 \nCharge rate:0");
+  BatteryChargeMonitoring (19,0);
 
-  /*Charging and charge is above threshold with optimum temperature */
-  printf("\n\nTC3\nThe passed values for battery charging status check are as follows \nTemperature : 25 \nSoC : 81 \nCharge rate:0.3");
-  BatteryChargeMonitoring (25,81,0.3);
+  /*Charging and charge is above threshold */
+  printf("\n\nTC3\nThe passed values for battery charging status check are as follows \nSoC : 81 \nCharge rate:0.3");
+  BatteryChargeMonitoring (81,0.3);
 
-  /*Charging and charge is in limit with more temperature */
-  printf("\n\nTC4\nThe passed values for battery charging status check are as follows \nTemperature : 60 \nSoC : 75 \nCharge rate:0.5");
-  BatteryChargeMonitoring (60,75,0.5);
+  /*Charging and charge is in limit */
+  printf("\n\nTC4\nThe passed values for battery charging status check are as follows \nSoC : 75 \nCharge rate:0.5");
+  BatteryChargeMonitoring (75,0.5);
 }
 
 
