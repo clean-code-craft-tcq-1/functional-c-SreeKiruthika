@@ -8,13 +8,13 @@
 			 1 - Param is less than required charge (NOT_OK)
 			 2 - Param is more than desired charge value (NOT_OK)
 *****************************************************************************************/	
-int BatteryParamCheck (float param_value, struct ParamLimits param_limit)
+int BatteryParamCheck(float param_value, float min_value, float max_value)
 {
-    if(param_value < param_limit.min_value)
+    if(param_value < min_value)
 	{
 		return 1;
 	}
-	else if (param_value > param_limit.max_value) 
+	else if (param_value > max_value) 
 	{
 		return 2;
 	}
@@ -39,7 +39,12 @@ int BatteryStateCheck(float temperature, float soc, float chargeRate)
 	/*All check param functions must return 0 if the param check is OK*/
     int batteryStatus;
 	
-	batteryStatus = !((BatteryParamCheck(temperature, tempLimits)) || (BatteryParamCheck(soc, SoCLimits)) || (BatteryParamCheck(chargeRate, ChargeRateLimits)));
+	/*All check param functions must return 0 if the param check is OK*/
+	int temp_status  = BatteryParamCheck(temperature,MINTEMP,MAXTEMP);
+	int soc_status = BatteryParamCheck(soc,MINSOC,MAXSOC);
+	int chargeRate_status  = BatteryParamCheck(chargeRate,MINCHGRATE,MAXCHGRATE);
+	
+	batteryStatus = !(temp_status || soc_status || chargeRate_status);
 	
 	printBatteryStatus(batteryStatus);
 	
