@@ -39,7 +39,7 @@ int BatteryStateCheck(float temperature, float soc, float chargeRate)
 	/*All check param functions must return 0 if the param check is OK*/
     int batteryStatus;
 	
-	batteryStatus = !((BatteryParamCheck(temperature, tempLimits)) || (BatteryParamCheck(soc, SoCLimits)) || (BatteryParamCheck(chargeRate, ChargeRateLimits));
+	batteryStatus = !((BatteryParamCheck(temperature, tempLimits)) || (BatteryParamCheck(soc, SoCLimits)) || (BatteryParamCheck(chargeRate, ChargeRateLimits)));
 	
 	printBatteryStatus(batteryStatus);
 	
