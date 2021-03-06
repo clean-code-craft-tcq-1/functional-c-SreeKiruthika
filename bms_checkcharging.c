@@ -2,14 +2,12 @@
 
 /****************************************************************************************
 *Func desc : This function is used to check for the battery charge monitoring 
-*Param     : temperature - The current battery temperature value that was measured -float type
-*			 soc         - The current battery state of charge that was measured   -float type	
+*Param     : soc         - The current battery state of charge that was measured   -float type	
 *            chargerate  - The charging rate that is measured - float type
 *Return    : No return values, just infers the battery charge / charging status
 *****************************************************************************************/	  
-void BatteryChargeMonitoring(float temperature, float soc, float chargeRate) 
+void BatteryChargeMonitoring(float soc, float chargeRate) 
 {
-	int  retval;
 	if (chargeRate == 0)
 	{
 		checkIfChargingNeeded(soc);
@@ -38,7 +36,7 @@ void checkIfCharged(float soc)
 	}
 	else
 	{
-	  printf("\nBatery charge value is %f , continue charging till 80%!", soc);
+	  printf("\nBatery charge value is %f , continue charging till 80%%", soc);
     }
 }
 /****************************************************************************************
@@ -54,7 +52,7 @@ void checkIfChargingNeeded(float soc)
 	}
 	else
 	{
-	  printf("\nBatery charge value is %f, connect if it goes less than 20% ", soc);
+	  printf("\nBatery charge value is %f, connect if it goes less than 20%%", soc);
     }
 
 }

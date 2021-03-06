@@ -9,9 +9,19 @@
 #define MAXTEMP 45
 #define MINSOC  20
 #define MAXSOC  80
+#define MINCHGRATE 0
 #define MAXCHGRATE 0.8
 
-enum BatteryParam {TEMP, SOC, CHARGERATE, NUMPARAM};
+struct ParamLimits
+{
+	float min_value;
+	float max_value;
+};
+
+/*Battery parameter limit values defined for identified parameters*/
+struct ParamLimits tempLimits = {MINTEMP,MAXTEMP};
+struct ParamLimits SoCLimits = {MINSOC,MAXSOC};
+struct ParamLimits ChargeRateLimits = {MINCHGRATE, MAXCHGRATE};
 
 /************************************************************/
 
@@ -19,13 +29,11 @@ enum BatteryParam {TEMP, SOC, CHARGERATE, NUMPARAM};
   
 int BatteryStateCheck(float temperature, float soc, float chargeRate);
 
-int checkSoC(float soc);
+void printBatteryStatus(int batteryStatus);
 
-int checkTemp(float temperature);
+int BatteryParamCheck ( float param_value, struct ParamLimits param_limit);
 
-int checkChargeRate(float chargeRate);
-
-void BatteryChargeMonitoring(float temperature, float soc, float chargeRate) ;
+void BatteryChargeMonitoring(float soc, float chargeRate) ;
 
 void checkIfChargingNeeded(float soc);
 
